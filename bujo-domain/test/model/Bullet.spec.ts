@@ -4,7 +4,6 @@ import {TaskBullet} from "../../src/model/TaskBullet";
 import {BulletType} from "../../src/model/BulletType";
 import {NoteBullet} from "../../src/model/NoteBullet";
 import {EventBullet} from "../../src/model/EventBullet";
-import {LogList} from "../../src/model/LogList";
 
 describe('Domain model: Bullet.', () => {
     describe('Type', () => {
@@ -85,16 +84,6 @@ describe('Domain model: Bullet.', () => {
             expect(() => {
                 taskBullet.dateCreated = later;
                 taskBullet.lastUpdated = now;
-            }).to.throw(Error);
-        });
-    });
-
-    describe('Logs', () => {
-        it('are not allowed to be changed', () => {
-            const taskBullet = new TaskBullet();
-
-            expect(() => {
-                taskBullet.logs = new LogList();
             }).to.throw(Error);
         });
     });

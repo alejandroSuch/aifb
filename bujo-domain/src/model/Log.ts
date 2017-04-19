@@ -1,12 +1,15 @@
 import {BaseModel} from "./BaseModel";
+import {BulletList} from "./BulletList";
 
 export class Log extends BaseModel {
     private _name: string = null;
     private _isMonthly: boolean = true;
+    private _bullets: BulletList;
 
-    constructor(isMonthly:boolean) {
+    constructor(isMonthly: boolean) {
         super();
         this._isMonthly = isMonthly;
+        this._bullets = new BulletList();
     }
 
     get name(): string {
@@ -23,5 +26,14 @@ export class Log extends BaseModel {
 
     set isMonthly(value: boolean) {
         throw new Error('isMonthly cannot be changed');
+    }
+
+
+    get bullets(): BulletList {
+        return this._bullets;
+    }
+
+    set bullets(value: BulletList) {
+        throw new Error('Bullets cannot be changed');
     }
 }
