@@ -1,0 +1,28 @@
+{
+  "name": "bujo-domain",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "mocha test --recursive --colors --sort --ui bdd --throw-deprecation --compilers ts:ts-node/register",
+    "test:watch": "mocha test --watch --recursive --colors --sort --ui bdd --throw-deprecation --compilers ts:ts-node/register"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^3.5.0",
+    "@types/mocha": "^2.2.40",
+    "@types/moment": "^2.13.0",
+    "@types/sinon": "^2.1.2",
+    "@types/uuid": "^2.0.29",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^2.1.0",
+    "ts-node": "^3.0.2",
+    "typescript": "^2.2.2",
+    "uuid": "^3.0.1"
+  },
+  "dependencies": {
+    "rxjs": "^5.3.0"
+  }
+}
