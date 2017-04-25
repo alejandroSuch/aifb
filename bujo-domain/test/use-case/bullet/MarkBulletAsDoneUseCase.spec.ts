@@ -1,28 +1,19 @@
 import {expect} from "chai";
 import {mock} from "sinon";
 import {v4} from "uuid";
-import {BulletRepository} from "../../../src/repository/BulletRepository";
 import {Observable} from "rxjs/Observable";
-import {Bullet} from "../../../src/model/Bullet";
 import {MarkBulletAsDoneUseCase} from "../../../src/use-case/bullet/MarkBulletAsDoneUseCase";
 import {TaskBullet} from "../../../src/model/TaskBullet";
 import {NoteBullet} from "../../../src/model/NoteBullet";
 
 import "rxjs/add/observable/of";
+import {BulletRepository} from "../mocks/BulletRepository";
 
 describe('MarkBulletAsDoneUseCase', () => {
-    const bulletRepository: BulletRepository = {
-        get(id: String): Observable<Bullet>{
-            return null;
-        },
-        save(bullet: TaskBullet): Observable<TaskBullet>{
-            return null;
-        }
-    };
+    const bulletRepository = new BulletRepository();
 
     it('should throw an error when not sending a task bullet', (done) => {
-        const useCase = new MarkBulletAsDoneUseCase(bulletRepository);
-        useCase
+        new MarkBulletAsDoneUseCase(bulletRepository)
             .execute({bullet: new NoteBullet()})
             .subscribe(
                 () => {
@@ -46,9 +37,7 @@ describe('MarkBulletAsDoneUseCase', () => {
             .once()
             .returns(Observable.of({id: v4()}));
 
-        const useCase = new MarkBulletAsDoneUseCase(bulletRepository);
-
-        useCase
+        new MarkBulletAsDoneUseCase(bulletRepository)
             .execute({bullet: bullet})
             .subscribe((result) => {
                 expect(result.id).not.to.be.null;

@@ -3,8 +3,16 @@ import {Log} from "../model/Log";
 const pad = require("pad-left");
 
 export class LogFactory {
-    public static createMonthlyLog(month: number = moment().month() + 1,
-                                   year: number = (moment().year() + (month < (moment().month() + 1) ? 1 : 0))): Log {
+    public static regularLog(name:string):Log {
+        const log = new Log(false);
+
+        log.name = name;
+
+        return log;
+    }
+
+    public static monthlyLog(month: number = moment().month() + 1,
+                             year: number = (moment().year() + (month < (moment().month() + 1) ? 1 : 0))): Log {
         const dayOne = moment({day: 1});
 
         if (month < 1 || month > 12) {

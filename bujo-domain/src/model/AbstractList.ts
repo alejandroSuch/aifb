@@ -1,7 +1,12 @@
-export abstract class AbstractList<T> implements Iterable<T> {
+import {BaseModel} from "./BaseModel";
+export class AbstractList<T extends BaseModel> implements Iterable<T> {
     private _list: T[] = [];
 
-    append(item: T) {
+    remove(item: T): void {
+        this._list = this._list.filter(it => it.id !== item.id);
+    }
+
+    append(item: T): void {
         this._list = [...this._list, item];
     }
 

@@ -11,7 +11,7 @@ export class MarkBulletAsDoneUseCase implements UseCase<TaskBullet> {
 
     }
 
-    execute(command: Command<TaskBullet>): Observable<TaskBullet> {
+    execute(command: Command): Observable<TaskBullet> {
         const bullet: TaskBullet = command.bullet;
 
         if (!(bullet instanceof TaskBullet)) {
@@ -19,6 +19,7 @@ export class MarkBulletAsDoneUseCase implements UseCase<TaskBullet> {
         }
 
         bullet.markAsDone();
+        bullet.lastUpdated = new Date();
         return this.bulletRepository.save(bullet);
     }
 }
